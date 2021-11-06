@@ -10,10 +10,18 @@
 </head>
 <body>
     <header>
-        <h1>Dungeon Master's Codex</h1>
+        <h1>Dungeon Master's Codex</h1><br>
     </header>
     <main>
-        <section class="monster-form"></section>
+        <section class="monster-form">
+            <form class="monster-lookup">
+                <h3 class="option-1">Input desired Challenge Rating</h3>
+                <input id="cr" type="text" placeholder="0.125"><br>
+                <label for="cr">Valid Options: (0.125,0.25,0.5,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)</label><br>
+                <input type="submit" value="Submit">
+            </form>
+            <p id="user-cr"></p>
+        </section>
         <section class="monster-list"></section>
     </main>
     <footer>
