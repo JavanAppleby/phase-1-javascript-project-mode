@@ -2,7 +2,7 @@ let monsterArray
 const monsterDetails = {}
 const baseUrl = "https://www.dnd5eapi.co/api/"
 
-document.addEventListener('click', function() {
+document.getElementById("challengeRating").addEventListener('click', function() {
     event.preventDefault();
     let cr = document.getElementById("challengeRatings").value;
     let monsterUrl = `${baseUrl}/monsters?challenge_rating=${cr}`
