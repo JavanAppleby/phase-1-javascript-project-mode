@@ -1,0 +1,43 @@
+header {
+    text-align: center;
+    font-variant: small-caps;
+    outline: 5pt black;
+    color: red;
+}
+
+section {
+    display: flex;
+}
+
+section.monster-list h3 {
+    margin-bottom: 1em;
+}
+
+section.monster-list li {
+    padding-top: 0.2em;
+}
+
+#monster-modal {
+    display: flex;
+}
+
+form {
+    display: flex;
+    align-content: center;
+    margin-bottom: 2em;
+}
+
+label {
+    font-size: 16pt;
+    width: max-content;
+    margin-right: 25%;
+}
+
+#challengeRatings {
+    width: 4em;
+}
+
+#monster-name {
+    font-size: 24pt;
+    color: maroon;
+}
