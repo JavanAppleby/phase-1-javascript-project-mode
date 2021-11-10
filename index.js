@@ -39,13 +39,14 @@ const fetchMonsterDetails = async monster => {
 
 const generateMonsterListItem = (monster) => {
     const listItem = document.createElement('li')
-    listItem.className = "monster-listByCr"
+    listItem.className = "monster-listAlphabetical"
     
-    const alphabet = monsterDetails[monster.name].charAt(0);
-    console.log(alphabet)
+    let cr = document.getElementById("challengeRatings").value
+    document.getElementById('crResults').innerHTML = `CR ${cr} Monsters`
+
     listItem.innerHTML = `
-    <h4>CR ${cr} Monsters</h4>
-        <h5>${alphabet}</h5>
+
+        <li class="monsterList">${monster.name}</li><br>
     `
     return listItem
 }
