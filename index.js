@@ -1,6 +1,6 @@
 let monsterArray
 const monsterDetails = {}
-const baseUrl = "https://www.dnd5eapi.co/api/"
+const baseUrl = "https://www.dnd5eapi.co"
 
 document.getElementById("challengeRatings").addEventListener('change', function(event) {
     event.preventDefault();
@@ -9,7 +9,7 @@ document.getElementById("challengeRatings").addEventListener('change', function(
 })
 
 function getMonsterWithCr (cr) {
-    let monsterUrl = `${baseUrl}/monsters?challenge_rating=${cr}`
+    let monsterUrl = `${baseUrl}/api/monsters?challenge_rating=${cr}`
     mapMonsterData(monsterUrl);
 }
 
@@ -37,7 +37,7 @@ const fetchMonsterDetails = async monster => {
     document.querySelector('section.monster-list ul').append(listItem)
 }
 
-const generateMonsterListItem = (monsterName) => {
+const generateMonsterListItem = (monster) => {
     const listItem = document.createElement('li')
     listItem.className = "monster-listByCr"
     
