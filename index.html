@@ -8,11 +8,14 @@
     <script src="index.js" defer></script>
     <title>Roll for Initiative!</title>
 </head>
+
 <body>
+
     <header>
         <h1>Dungeon Master's Codex</h1><br>
     </header>
-    <form>
+
+    <form id="crSelector">
         <label for="challengeRatings">Choose Challenge Rating</label><br>
         <select name="cr" id="challengeRatings">
             <option>-</option>
@@ -51,45 +54,24 @@
             <option value="30">30</option>
         </select>
         <br><br>
-    </form>    
+    </form>
+    
     <main>
+        
         <section class="monster-list">
             <h3 id="crResults"></h3>
-                <ul>
+                <form>
+                    <div id="monstersByCr"></div>
                     
-                </ul>
+                </form>
         </section>
+        
     </main>
+
     <footer>
         <p>Copyright 2021</p>
     </footer>
 
-    <div id="monster-modal" class="hidden">
-        <h2 id="monster-name"></h2>
-        <h3 id="monster-type"></h3>
-        <h4 id="monster-subType"></h4>
-        <h4 id="monster-size"></h4>
-        <h4 id="monster-armorClass"></h4>
-        <h4 id="monster-hitDice"></h4>
-        <h4 id="monster-hitPoints"></h4>
-        <h4 id="monster-speed"></h4>
-        <!-- <h3 id="monster-scores">Ability Scores: </h3> -->
-        <!-- <h4 id="str">Strength</h4>
-        <h4 id="dex">Dexterity</h4>
-        <h4 id="con">Constitution</h4>
-        <h4 id="int">Intelligence</h4>
-        <h4 id="wis">Wisdom</h4>
-        <h4 id="cha">Charisma</h4> -->
-        <!-- <p>Proficiencies: <span id="monster-prof"></span></p> -->
-        <h4 id="monster-dmgResist"></h4>
-        <h4 id="monster-dmgVuln"></h4>
-        <h4 id="monster-dmgImmune"></h4>
-        <h4 id="monster-condImmune"></h4>
-        <h4 id="monster-senses"></h4>
-        <h4 id="monster-languages"></h4>
-        <h4 id="monster-xp"></h4>
-    </div>
-
-
 </body>
+
 </html>
