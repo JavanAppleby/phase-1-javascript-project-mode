@@ -1,7 +1,6 @@
 let monsterArray
 const monsterDetails = {}
 const baseUrl = "https://www.dnd5eapi.co"
-const modal = document.querySelector('#monster-modal')
 
 document.getElementById("challengeRatings").addEventListener('change', function(event) {
     event.preventDefault();
@@ -16,6 +15,7 @@ document.getElementById("challengeRatings").addEventListener('change', function(
 
     resetItemList();
 })
+
 
 function getMonsterWithCr (cr) {
     let monsterUrl = `${baseUrl}/api/monsters?challenge_rating=${cr}`
@@ -101,7 +101,12 @@ function openModal(modal) {
     if (modal == null) return
     modal.classList.add('active')
     overlay.classList.add('active')
-    monsterCard();
+    let selected = document.querySelector('input[type="radio"][class="crResults"]:checked').value;
+    let statBlock = document.querySelector('h2.modal-header');
+    let monsterName = document.createTextNode(selected);
+    statBlock.innerHTML = ""
+    statBlock.prepend(monsterName)
+    monsterCard(monster);
 }
 
 function closeModal(modal) {
@@ -111,10 +116,8 @@ function closeModal(modal) {
 }
 
 const monsterCard = (monster) => {
-    let selected = document.querySelector('input[type="radio"][class="crResults"]:checked').value;
-    let statBlock = document.querySelector('h2.modal-header');
-    let monsterName = document.createTextNode(selected);
-    statBlock.prepend(monsterName)
 
-    
+    document.querySelector('p.stats').innerHTML =`
+        ${monster.name.type}
+    `
 }
