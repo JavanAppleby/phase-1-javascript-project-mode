@@ -1,6 +1,7 @@
 let monsterArray
 const monsterDetails = {}
 const baseUrl = "https://www.dnd5eapi.co"
+let selectedMonsterUrl
 
 document.getElementById("challengeRatings").addEventListener('change', function(event) {
     event.preventDefault();
@@ -60,14 +61,14 @@ const generateMonsterListItem = (monster) => {
     document.getElementById('crResults').innerHTML = `CR ${crText} Monsters`;
     
     const buildCard = () => {
-        document.querySelector('section.monster-list form').innerHTML += `
+        let crList = `
             <div class="crResults">
                 <span>
-                    <input type="radio" name="monsterCard" class="crResults" id="${baseUrl}${monster.url}" value="${monster.name}">
+                    <input type="radio" name="monsterCard" class="crResults" id="${baseUrl}${monster.url}/" value="${monster.name}">
                     <label for="${baseUrl}${monster.url}" id="${monster.name}" class="crResults">${monster.name}</label>
                 </span><br>
-            </div>
-        `
+            </div>`
+        document.querySelector('section.monster-list form').innerHTML += `${crList}`
     }
     buildCard().remove = "undefined"
 }
@@ -106,18 +107,57 @@ function openModal(modal) {
     let monsterName = document.createTextNode(selected);
     statBlock.innerHTML = ""
     statBlock.prepend(monsterName)
-    monsterCard(monster);
+    
+    let radio = document.querySelector('input[type="radio"][class="crResults"]:checked');
+    selectedMonsterUrl = radio.getAttribute('id')
+    mapMonsterStats(selectedMonsterUrl)
+}
+
+const fetchStats = async (selectedMonsterUrl) => {
+    const response = await fetch(`${selectedMonsterUrl}`);
+    const statsData = await response.json();
+    return statsData;
+}
+
+const mapMonsterStats = async (selectedMonsterUrl) => {
+    const data = await fetchStats(selectedMonsterUrl);
+    data.results.forEach(stats => {
+        if (!monsterStatDetails[stats.name]) {
+            fetchMonsterStatsDetails(stats)
+        }
+    });
+}
+
+const fetchMonsterStatsDetails = (stats) => {
+return fetch(`${selectedMonsterUrl}`)
+    .then(res => res.json())
+    .then(data => {
+        monsterStatDetails[stats.name] = data
+        const card = monsterCard(monsterStatDetails[stats.name])
+        document.querySelector('p.stats').append(card)
+    })
+}       
+
+const monsterCard = monster => {
+    const monsterCard = document.createElement('div')
+    monsterCard.className = "monster-card"
+    monsterCard.dataset['name'] = stats.name
+    monsterCard.dataset['size'] = stats.size
+    monsterCard.dataset['type'] = stats.type
+    monsterCard.dataset['subtype'] = JSON.stringify(stats.subtype)
+    monsterCard.dataset['alignment'] - stats.alignment
+    monsterCard.dataset['armor_class'] = stats.armorclass
+    monsterCard.dataset['hit_points'] = stats.hitpoints
+    monsterCard.dataset['hit_dice'] = stats.hitdice
+    
+    monsterCard.innerHTML = `
+    <h3>${monster.size}</h3>
+    `
+    return monsterCard
 }
 
 function closeModal(modal) {
     if (modal == null) return
     modal.classList.remove('active')
     overlay.classList.remove('active')
-}
-
-const monsterCard = (monster) => {
-
-    document.querySelector('p.stats').innerHTML =`
-        ${monster.name.type}
-    `
 }
