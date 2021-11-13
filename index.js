@@ -13,6 +13,7 @@ document.getElementById("challengeRatings").addEventListener('change', function(
             elements[0].parentNode.removeChild(elements[0]);
         }
     }
+
     resetItemList();
 })
 
@@ -100,14 +101,20 @@ function openModal(modal) {
     if (modal == null) return
     modal.classList.add('active')
     overlay.classList.add('active')
-    let selected = document.querySelector('input[type="radio"][name="monsterCard]:checked');
-    let statBlock = document.querySelector('h2.modal-header');
-    
-    statBlock.innerText = selected.parentElement.textContent;
+    monsterCard();
 }
 
 function closeModal(modal) {
-  if (modal == null) return
-  modal.classList.remove('active')
-  overlay.classList.remove('active')
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+}
+
+const monsterCard = (monster) => {
+    let selected = document.querySelector('input[type="radio"][class="crResults"]:checked').value;
+    let statBlock = document.querySelector('h2.modal-header');
+    let monsterName = document.createTextNode(selected);
+    statBlock.prepend(monsterName)
+
+    
 }
