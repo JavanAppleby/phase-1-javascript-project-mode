@@ -12,20 +12,15 @@ header {
     align-items: center;
 }
 
-.getMonsterCard {
+button {
     width: 250px;
     font-size: 18pt;
 }
 
-/* #crSelector-container {
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
-} */
-
 #crSelector-container label{
     font-size: 18pt;
     font-style: italic;
+    cursor: text;;
 }
 
 #crSelector-container select {

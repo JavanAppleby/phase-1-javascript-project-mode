@@ -72,19 +72,26 @@ const generateMonsterListItem = (monster) => {
 }
 
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
-const closeModalButtons = document.querySelectorAll('[data-close-button')
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
 
 openModalButtons.forEach(button => {
-    button.addEventListener('change', () => {
-        const modal = document.querySelector(button.dataset.modalTarget)
-        openModal(modal)
+  button.addEventListener('click', () => {
+      const modal = document.querySelector(button.dataset.modalTarget)
+      openModal(modal)
+    })
+})
+
+overlay.addEventListener('click', () => {
+    const modals = document.querySelectorAll('.modal.active')
+    modals.forEach(modal => {
+        closeModal(modal)
     })
 })
 
 closeModalButtons.forEach(button => {
-    button.addEventListener('change', () => {
-        const modal = button.closest('modal')
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal')
         closeModal(modal)
     })
 })
@@ -93,18 +100,14 @@ function openModal(modal) {
     if (modal == null) return
     modal.classList.add('active')
     overlay.classList.add('active')
+    let selected = document.querySelector('input[type="radio"][name="monsterCard]:checked');
+    let statBlock = document.querySelector('h2.modal-header');
+    
+    statBlock.innerText = selected.parentElement.textContent;
 }
 
 function closeModal(modal) {
-    if (modal == null) return
-    modal.classList.remove('active')
-    overlay.classList.remove('active')
-}
-
-const generateMonsterCard = async monster => {
-    const monsterListUrl = `${baseUrl}${monster.url}`
-    const response = await fetch(monsterListUrl)
-    const data = await response.json()
-    monsterDetails[monster.name] = data
-
+  if (modal == null) return
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
 }

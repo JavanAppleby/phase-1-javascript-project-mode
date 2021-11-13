@@ -14,14 +14,14 @@
     <header>
         <h1>Dungeon Master's Codex</h1><br>
     </header>
-    
+
     <div id="main-container">
         <main>
 
             <div id="crSelector-container">
                 <form>
                     <label for="challengeRatings">Choose Challenge Rating</label><br>
-                    <select name="cr" id="challengeRatings">
+                    <select data.modal-target="#monster-list-container" name="cr" id="challengeRatings">
                         <option>-</option>
                         <option value="0.125">1/8</option>
                         <option value="0.25">1/4</option>
@@ -61,16 +61,16 @@
                 </form>
             </div>
 
-            <button data-modal-target class="getMonsterCard">See Stat Block</button>
+            <button data-modal-target="#modal">Show Stat Block</button>
             <div id="monster-list-container">
                 <section class="monster-list">
                         <h2 id="crResults"></h2>
                         <form name="monster-list">
-                            
+
                         </form>
                 </section>
-            </div> 
-            
+            </div>
+
 
             <div class="modal" id="modal">
                 <section>
@@ -78,7 +78,7 @@
                         <button data-close-button class="close-button">&times;</button>
                     </h2>
                     <section class="modal-body">
-            
+
                     </section>
                 </section>
             </div>
