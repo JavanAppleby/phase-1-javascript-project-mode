@@ -57,19 +57,54 @@ const generateMonsterListItem = (monster) => {
     } else crText = cr
 
     document.getElementById('crResults').innerHTML = `CR ${crText} Monsters`;
-
-    const radio = document.createElement('input');
-        radio.setAttribute("type", "radio");
-        radio.name = "monsterCard";
-        radio.className = "crResults";
-        radio.id = `${baseUrl}${monster.url}`;
-        radio.value = `${monster.name}`;
     
-    const label = document.createElement('label');
-        label.setAttribute("for",`${baseUrl}${monster.url}`);
-        label.innerHTML = `${monster.name}`;
-        label.className = "crResults"
-    document.querySelector('section.monster-list form').appendChild(label);
+    const buildCard = () => {
+        document.querySelector('section.monster-list form').innerHTML += `
+            <div class="crResults">
+                <span>
+                    <input type="radio" name="monsterCard" class="crResults" id="${baseUrl}${monster.url}" value="${monster.name}">
+                    <label for="${baseUrl}${monster.url}" id="${monster.name}" class="crResults">${monster.name}</label>
+                </span><br>
+            </div>
+        `
+    }
+    buildCard().remove = "undefined"
+}
 
-    return radio
+const openModalButtons = document.querySelectorAll('[data-modal-target]')
+const closeModalButtons = document.querySelectorAll('[data-close-button')
+const overlay = document.getElementById('overlay')
+
+openModalButtons.forEach(button => {
+    button.addEventListener('change', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+})
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('change', () => {
+        const modal = button.closest('modal')
+        closeModal(modal)
+    })
+})
+
+function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+}
+
+const generateMonsterCard = async monster => {
+    const monsterListUrl = `${baseUrl}${monster.url}`
+    const response = await fetch(monsterListUrl)
+    const data = await response.json()
+    monsterDetails[monster.name] = data
+
 }

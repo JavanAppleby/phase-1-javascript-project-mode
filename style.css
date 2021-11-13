@@ -2,74 +2,88 @@ header {
     text-align: center;
     font-variant: small-caps;
     outline: 5pt black;
-    color: red;
+    color: #9B2818;
     font-size: 28pt;
 }
 
-#crResults {
+#main-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.getMonsterCard {
+    width: 250px;
+    font-size: 18pt;
+}
+
+/* #crSelector-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+} */
+
+#crSelector-container label{
+    font-size: 18pt;
+    font-style: italic;
+}
+
+#crSelector-container select {
+    font-size: inherit;
+    margin-top: 2px;
+    padding: 0.5em;
+    width: 250px;
+    text-align: center;
+}
+
+#monster-list-container {
+    align-items: center;
+    display: inline-block;
+    vertical-align: middle;
+    justify-content: space-around;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    border: 1px solid #9B2818;
+    border-radius: 10px;
+    width: max-content;
+    height: max-content;
+    max-width: 80%;
+    max-height: 60%;
+}
+
+#monster-list-container h2 {
     font-size: 24pt;
     padding-right: 1em;
     padding-left: 1em;
+    color: #9B2818;
 }
 
-#crSelector {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-section {
-    display: flex;
-}
-
-section.monster-list{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    transition: 500ms ease-in-out;
+#monster-list-container form {
+    display: inline-flexbox;
+    margin: 1em;
     border: 1px solid #9B2818;
     border-radius: 10px;
-    width: auto;
-    height: auto;
-    max-width: 80%;
-    max-height: 30%;
+    background-color: #F7F1D5;
+    padding: 1em;
+    column-count: 2;
+    column-width: fit-content;
 }
 
-
-#monstersByCr {
-    align-items: center;
-    display: flex;
-}
-
-.monster-list label {
+#monster-list-container radio {
     font-size: 14pt;
-    margin-top: 1em;
-    padding: 2em;
+    margin-inline-end: 1em;
 }
 
-form#crSelector {
-    display: flex;
-    align-content: center;
-    margin-bottom: 2em;
-}
-
-label {
+#monster-list-container label {
     font-size: 16pt;
-    width: max-content;
-    margin-right: 25%;
+    margin-inline-end: 1em;
+    margin-inline-start: 1em;
+    flex-wrap: none;
 }
 
-#challengeRatings {
-    width: 10em;
-}
-
-*, *::after, *::before {
-    box-sizing: border-box;
-}
-
-#monster-modal {
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -78,16 +92,16 @@ label {
     border: 1px solid #9B2818;
     border-radius: 10px;
     z-index: 10;
-    background-color: #FAF5DE;
+    background-color: #F7F1D5;
     width: 500px;
     max-width: 80%;
 }
 
-#monster-modal.active {
+.modal.active {
     transform: translate(-50%, -50%) scale(1);
 }
 
-#monster-name {
+.modal-header {
     font-size: 24pt;
     font-weight: bold;
     color: #9B2818;
@@ -98,7 +112,7 @@ label {
     border-bottom: 2px #9B2818;
 }
 
-.close-card {
+.modal-header .close-button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -107,7 +121,7 @@ label {
     font-weight: bold;
 }
 
-.monster-card {
+.modal-body {
     padding: 10px 15px;
 }
 
