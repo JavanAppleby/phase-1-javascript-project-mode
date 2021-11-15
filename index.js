@@ -108,56 +108,56 @@ function openModal (modal) {
     statBlock.innerHTML = "";
     statBlock.prepend(monsterName);
 
-    function getStatUrl () {
-        let radio = document.querySelector('input[type="radio"][class="crResults"]:checked');
-        let monsterName = radio.getAttribute('id');
-        let statUrl = `${monsterName}`;
-        mapMonsterData(statUrl);
-    }
-    getStatUrl();
+    // function getStatUrl () {
+    //     let radio = document.querySelector('input[type="radio"][class="crResults"]:checked');
+    //     let monsterName = radio.getAttribute('id');
+    //     let statUrl = `${monsterName}`;
+    //     mapMonsterData(statUrl);
+    // }
+    // getStatUrl();
 }
 
-const fetchStats = async statUrl => {
-    const response = await fetch(`${statUrl}`);
-    const statData = await response.json();
-    return statData;
-}
+// const fetchStats = async statUrl => {
+//     const response = await fetch(`${statUrl}`);
+//     const statData = await response.json();
+//     return statData;
+// }
 
-const mapMonsterStats = async statUrl => {
-    const statData = await fetchStats(statUrl);
-    statData.results.forEach(stat => {
-        if (!monsterStatDetails[stat.name]) {
-            fetchMonsterStatsDetails(stat);
-        }
-    });
-}
+// const mapMonsterStats = async statUrl => {
+//     const statData = await fetchStats(statUrl);
+//     statData.results.forEach(stat => {
+//         if (!monsterStatDetails[stat.name]) {
+//             fetchMonsterStatsDetails(stat);
+//         }
+//     });
+// }
 
-const fetchMonsterStatsDetails = async stat => {
-    const statListUrl = `${statUrl}`;
-    const response = await fetch(statListUrl);
-    const data = await response.json();
-    monsterStatDetails[stat.name] = data;
-    const card = monsterCard(monsterStatDetails[stat.name]);
-    document.querySelector('p.stats').append(card);
-}       
+// const fetchMonsterStatsDetails = async stat => {
+//     const statListUrl = `${statUrl}`;
+//     const response = await fetch(statListUrl);
+//     const data = await response.json();
+//     monsterStatDetails[stat.name] = data;
+//     const card = monsterCard(monsterStatDetails[stat.name]);
+//     document.querySelector('p.stats').append(card);
+// }       
 
-const monsterCard = stat => {
-    const monsterCard = document.createElement('div');
-    monsterCard.className = "monster-card";
-    monsterCard.dataset['name'] = stat.name;
-    monsterCard.dataset['size'] = stat.size;
-    monsterCard.dataset['type'] = stat.type;
-    monsterCard.dataset['subtype'] = JSON.stringify(stat.subtype);
-    monsterCard.dataset['alignment'] - stat.alignment;
-    monsterCard.dataset['armor_class'] = stat.armorclass;
-    monsterCard.dataset['hit_points'] = stat.hitpoints;
-    monsterCard.dataset['hit_dice'] = stat.hitdice;
+// const monsterCard = stat => {
+//     const monsterCard = document.createElement('div');
+//     monsterCard.className = "monster-card";
+//     monsterCard.dataset['name'] = stat.name;
+//     monsterCard.dataset['size'] = stat.size;
+//     monsterCard.dataset['type'] = stat.type;
+//     monsterCard.dataset['subtype'] = JSON.stringify(stat.subtype);
+//     monsterCard.dataset['alignment'] - stat.alignment;
+//     monsterCard.dataset['armor_class'] = stat.armorclass;
+//     monsterCard.dataset['hit_points'] = stat.hitpoints;
+//     monsterCard.dataset['hit_dice'] = stat.hitdice;
     
-    monsterCard.innerHTML = `
-        <h3>${stat.size}</h3>
-    `;
-    return monsterCard;
-}
+//     monsterCard.innerHTML = `
+//         <h3>${stat.size}</h3>
+//     `;
+//     return monsterCard;
+// }
 
 function closeModal(modal) {
     if (modal == null) return
