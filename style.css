@@ -158,19 +158,13 @@ button {
     margin-top: -1em;
     padding: 0.8em;
     font-size: 2vmin;
-}
-
-hr {
-    /* border-top: 4px #9B2818; */
-    width: 95%;
-    padding: 0;
-    margin-top: -1em;
+    border-bottom: #9B2818 solid;
 }
 
 .attr-label {
     font-size: 2vmin;
     font-weight: bold;
-    padding-left: 0.4em;
+    padding-left: 0.8em;
     color: #9B2818;
 }
 
@@ -190,6 +184,7 @@ hr {
 
 .abilities {
     display: flex;
+    border-top: #9B2818 solid;
 }
 
 .ability-block {
@@ -202,11 +197,24 @@ hr {
     font-weight: bold;
     align-items: center;
     font-size: 2vmin;
+    padding: 1em;
 }
 
 .ability-value {
     align-items: center;
     font-size: 2vmin;
+    display: grid;
+    padding-left: 1.4em;
+    padding-right: 1em;
+}
+
+.ability-extra {
+    align-items: center;
+    font-size: 1.5vmin;
+    display: grid;
+    padding-left: 1.7em;
+    padding-right: 1em;
+    padding-bottom: 0.8em;
 }
 
 #overlay {
