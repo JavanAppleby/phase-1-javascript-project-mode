@@ -26,36 +26,54 @@ header {
     text-shadow: 2px 2px white;
     outline: 5pt black;
     color: #9B2818;
-    font-size: 4vmax;
-    
+    font-size: 5vmax;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -0%) scale(1);    
 }
 
 #main-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 2em;
 }
 
 button {
     width: fit-content;
-    font-size: 1vmax;
-    margin-inline-start: 3em;
+    font-size: 36pt;
+}
+
+button.reset {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 36pt;
+    font-weight: bold;
+    align-items: right;
+    float: right;
+    margin-top: -0.2em;
 }
 
 #crSelector-container {
-    position: relative;
+    position: absolute;
     align-items: center;
+    font-size: 18pt;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -0%) scale(1);  
 }
 
 #crSelector-container label{
-    font-size: 18pt;
     font-style: italic;
     cursor: text;
     color: white;
 }
 
 #crSelector-container select {
-    font-size: inherit;
+    font-size: 18px;
     margin-top: 2px;
     padding: 0.5em;
     width: 250px;
@@ -76,7 +94,7 @@ div.unhidden {
     transform: translate(-50%, -50%) scale(1);
     border: 1px solid #9B2818;
     border-radius: 10px;
-    max-width: 80%;
+    max-width: 90%;
     width: fit-content;
     height: fit-content;
     background-color: white;
@@ -84,7 +102,8 @@ div.unhidden {
 
 
 #monster-list-container h3 {
-    font-size: 2.5vmin;
+    font-size: 10px;
+    font-size: 2vmax;
     padding-right: 1em;
     padding-left: 1em;
     color: #9B2818;
@@ -101,17 +120,19 @@ div.unhidden {
     border-radius: 10px;
     background-color: #F7F1D5;
     padding: 1em;
-    column-count: 3;
+    column-count: 2;
     column-width: fit-content;
 }
 
 #showStats {
     align-items: right;
     justify-content: space-around;
+    font-size: 1vmax;
+    margin-left: 1.2em;
 }
 
 #monster-list-container label {
-    font-size: 1.5vmax;
+    font-size: 1vmax;
     margin-inline-end: 1em;
     margin-inline-start: 1em;
     flex-wrap: none;
@@ -145,42 +166,44 @@ div.unhidden {
     border: none;
     outline: none;
     background: none;
-    font-size: 24pt;
+    font-size: 36pt;
     font-weight: bold;
     align-items: right;
     float: right;
 }
 
+#modal {
+    min-width: fit-content;
+}
+
 .monster-card {
     display: block;
-    max-width: 90%;
+    min-width: fit-content;
     box-sizing: border-box;
-    min-width: 700px;
+    max-width: fit-content;
 }
 
 .stats-base {
-    font-size: 34px;
-    padding: 0.4em;
+    font-size: 34pt;
 }
 
 .statName {
-    font-size: 34px;
+    font-size: 2vmax;
     font-weight: 700;
     font-family: Arial;
     color: #9B2818;
-    font-size: 4vmin;
+    margin-left: 0.3em;
 }
 
 .type-label p {
     font-style: italic;
-    margin-top: -1em;
     padding: 0.8em;
-    font-size: 2vmin;
+    font-size: 1vmax;
     border-bottom: #9B2818 solid;
 }
 
 .attr-label {
-    font-size: 2vmin;
+    font-size: 1vmax;
     font-weight: bold;
     padding-left: 0.8em;
     color: #9B2818;
@@ -192,12 +215,12 @@ div.unhidden {
 
 .attr-value {
     padding: 3px;
-    font-size: 2vmin;
+    font-size: 1vmax;
 }
 
 .attr-extra {
     padding: 3px;
-    font-size: 2vmin;
+    font-size: 1vmax;
 }
 
 .abilities {
@@ -207,20 +230,20 @@ div.unhidden {
 
 .ability-block {
     display: block;
-    padding-left: 0.8em;
+    padding-left: 0.4em;
 }
 
 .ability-label {
     color: #9B2818;
     font-weight: bold;
     align-items: center;
-    font-size: 2vmin;
+    font-size: 1vmax;
     padding: 1em;
 }
 
 .ability-value {
     align-items: center;
-    font-size: 2vmin;
+    font-size: 1vmax;
     display: grid;
     padding-left: 1.4em;
     padding-right: 1em;
@@ -228,9 +251,9 @@ div.unhidden {
 
 .ability-extra {
     align-items: center;
-    font-size: 1.5vmin;
+    font-size: 1vmax;
     display: grid;
-    padding-left: 1.7em;
+    padding-left: 1.1em;
     padding-right: 1em;
     padding-bottom: 0.8em;
 }
@@ -252,6 +275,6 @@ div.unhidden {
 }
 
 footer {
-    margin-top: 150%;
-    display: none;
+    margin-top: 100%;
+    color: white;
 }

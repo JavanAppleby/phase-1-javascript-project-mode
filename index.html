@@ -11,17 +11,14 @@
 
   <body>
     <div class="bg-container">
-        <header>
-        <h1>Dungeon Master's Codex</h1>
-        <br />
-        </header>
-
-        <div id="main-container">
+      <div id="main-container">
+        <header>Dungeon Master's Codex</header>
         <main>
-            <div id="crSelector-container">
+          <div id="crSelector-container">
             <form>
-                <label for="challengeRatings">Choose Challenge Rating</label><br />
-                <select name="cr" id="challengeRatings">
+              <label for="challengeRatings">Choose Challenge Rating</label
+              ><br />
+              <select name="cr" id="challengeRatings">
                 <option>-</option>
                 <option value="0.125">1/8</option>
                 <option value="0.25">1/4</option>
@@ -56,31 +53,34 @@
                 <option value="28">28</option>
                 <option value="29">29</option>
                 <option value="30">30</option>
-                </select>
-                <br /><br />
+              </select>
+              <br /><br />
             </form>
-            </div>
+          </div>
 
-            <div id="monster-list-container" class="hidden">
-                <section class="monster-list">
-                    <div id="monster-listHeader">
-                        <h3 id="crResults"></h3>
-                        <button data-modal-target="#modal" id="showStats">Show Stat Block</button>
-                    </div>
-                    <form class="monster-list"></form>
-                </section>
-            </div>
-            
-            <div class="modal" id="modal">
-                <button data-close-button class="close-button">&times;</button>
-            </div>
-            <div id="overlay"></div>
+          <div id="monster-list-container" class="hidden">
+            <section class="monster-list">
+              <div id="monster-listHeader">
+                <button data-reset-button class="reset">&times;</button>
+                <h3 id="crResults"></h3>
+                <button data-modal-target="#modal" id="showStats">
+                  Show Stat Block
+                </button>
+              </div>
+              <form class="monster-list"></form>
+            </section>
+          </div>
+          
+          <div class="modal" id="modal">
+            <button data-close-button class="close-button">&times;</button>
+          </div>
+          <div id="overlay"></div>
         </main>
-        </div>
+      </div>
 
-        <footer>
-        <p>Copyright 2021</p>
-        </footer>
+      <footer>
+        <p>Copyright 2021 Javan Appleby</p>
+      </footer>
     </div>
-  </body>
+</body>
 </html>

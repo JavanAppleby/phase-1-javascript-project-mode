@@ -48,8 +48,12 @@ const fetchMonsterDetails = async (monster) => {
 };
 
 const generateMonsterListItem = (data) => {
-  document.querySelector('div#monster-list-container').classList.remove("hidden")
-  document.querySelector('div#monster-list-container').classList.add("unhidden")
+  document
+    .querySelector("div#monster-list-container")
+    .classList.remove("hidden");
+  document
+    .querySelector("div#monster-list-container")
+    .classList.add("unhidden");
   let cr = document.getElementById("challengeRatings").value;
   if (cr === "0.125") {
     crText = "1/8";
@@ -78,6 +82,7 @@ const buildCard = (monster) => {
 
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]");
+const resetMonsterList = document.querySelectorAll("[data-reset-button");
 const overlay = document.getElementById("overlay");
 
 openModalButtons.forEach((button) => {
@@ -100,6 +105,19 @@ closeModalButtons.forEach((button) => {
     closeModal(modal);
   });
 });
+
+resetMonsterList.forEach((button) => {
+  button.addEventListener("click", () => {
+    const reset = button.closest(".unhidden");
+    resetList(reset);
+  });
+});
+
+function resetList(reset) {
+  if (reset == null) return;
+  reset.classList.remove("unhidden");
+  reset.classList.add("hidden");
+}
 
 function closeModal(modal) {
   if (modal == null) return;
@@ -153,7 +171,7 @@ const renderStats = (stat) => {
       elements[0].parentNode.removeChild(elements[0]);
     }
   }
-  resetStatBlock()
+  resetStatBlock();
 
   let statType = stat.type.charAt(0).toUpperCase() + stat.type.slice(1);
   let statSize = stat.size.charAt(0).toUpperCase() + stat.size.slice(1);
