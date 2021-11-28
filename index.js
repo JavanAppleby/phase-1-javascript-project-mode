@@ -15,7 +15,6 @@ document
         elements[0].parentNode.removeChild(elements[0]);
       }
     }
-
     resetItemList();
   });
 
@@ -49,6 +48,8 @@ const fetchMonsterDetails = async (monster) => {
 };
 
 const generateMonsterListItem = (data) => {
+  document.querySelector('div#monster-list-container').classList.remove("hidden")
+  document.querySelector('div#monster-list-container').classList.add("unhidden")
   let cr = document.getElementById("challengeRatings").value;
   if (cr === "0.125") {
     crText = "1/8";
@@ -95,7 +96,7 @@ overlay.addEventListener("click", () => {
 
 closeModalButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const modal = button.closest("#modal");
+    const modal = button.closest(".modal");
     closeModal(modal);
   });
 });
@@ -114,9 +115,9 @@ function openModal(modal) {
     'input[type="radio"][class="crResults"]:checked'
   ).value;
   let statBlock = document.querySelector("div.modal");
-  document.createTextNode(selected);
-  statBlock.innerHTML = "";
-  //   statBlock.prepend(monsterName);
+  //   document.createTextNode(selected);
+  //   statBlock.innerHTML = "";
+
   renderStatBlock(statBlock);
 }
 
@@ -125,9 +126,6 @@ const renderStatBlock = (statBlock) => {
     'input[type="radio"][class="crResults"]:checked'
   ).dataset.url;
   fetchStats(statUrl).then((res) => statBlock.append(renderStats(res)));
-  // statDetails[stat.name] = statData;
-  // const statItem = monsterCard(statDetails[monster.name]);
-  // document.querySelector('section.modal-header p').append(statItem);
 };
 
 const renderStats = (stat) => {
@@ -148,6 +146,14 @@ const renderStats = (stat) => {
   monsterCard.dataset["intelligence"] = stat.intelligence;
   monsterCard.dataset["wisdom"] = stat.wisdom;
   monsterCard.dataset["charisma"] = stat.charisma;
+
+  function resetStatBlock(className) {
+    let elements = document.getElementsByClassName("monster-card");
+    while (elements.length > 0) {
+      elements[0].parentNode.removeChild(elements[0]);
+    }
+  }
+  resetStatBlock()
 
   let statType = stat.type.charAt(0).toUpperCase() + stat.type.slice(1);
   let statSize = stat.size.charAt(0).toUpperCase() + stat.size.slice(1);
@@ -190,12 +196,11 @@ const renderStats = (stat) => {
   }
   chaMod = `${chaMod}`;
 
-  let speeds = Object.entries(stat.speed).join(", ").replaceAll(","," ").replaceAll("/./","., ");
+  let speeds = Object.entries(stat.speed).join(", ").replaceAll(",", " ");
 
   monsterCard.innerHTML = `
-  <div class="stats-base">
+<div class="stats-base">
   <span class="statName">${stat.name}</span>
-  <button data-close-button class="close-button">&times;</button>
 </div>
 <div class="type-label">
   <p>${monsterType}</p>
@@ -265,7 +270,7 @@ const renderStats = (stat) => {
 </div>
     `;
   card = document.querySelector("div.modal").appendChild(monsterCard);
-  card.removeChild(node)
+  card.removeChild(node);
 };
 
 const fetchStats = async (statUrl) => {

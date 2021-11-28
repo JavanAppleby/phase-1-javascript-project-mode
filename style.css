@@ -44,10 +44,13 @@ button {
     text-align: center;
 }
 
-#monster-list-container {
+div.hidden {
+    transform: scale(0);
+}
+
+div.unhidden {
     align-items: center;
     display: inline-block;
-    margin-top: 10%;
     justify-content: space-around;
     position: absolute;
     top: 60%;
@@ -60,8 +63,9 @@ button {
     height: fit-content;
 }
 
+
 #monster-list-container h3 {
-    font-size: 1.8vmax;
+    font-size: 2.5vmin;
     padding-right: 1em;
     padding-left: 1em;
     color: #9B2818;
@@ -78,7 +82,7 @@ button {
     border-radius: 10px;
     background-color: #F7F1D5;
     padding: 1em;
-    column-count: 2;
+    column-count: 3;
     column-width: fit-content;
 }
 
@@ -87,12 +91,8 @@ button {
     justify-content: space-around;
 }
 
-#monster-list-container radio {
-    margin-inline-end: 1em;
-}
-
 #monster-list-container label {
-    font-size: 1.8vmax;
+    font-size: 1.5vmax;
     margin-inline-end: 1em;
     margin-inline-start: 1em;
     flex-wrap: none;
@@ -129,8 +129,7 @@ button {
     font-size: 24pt;
     font-weight: bold;
     align-items: right;
-    /* display: none; */
-    margin-left: 120px;
+    float: right;
 }
 
 .monster-card {
@@ -231,4 +230,9 @@ button {
 #overlay.active {
     pointer-events: all;
     opacity: 1;
+}
+
+footer {
+    margin-top: 150%;
+    display: none;
 }
