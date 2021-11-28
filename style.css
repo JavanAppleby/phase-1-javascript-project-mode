@@ -1,9 +1,16 @@
+body {
+    display: border-box;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
 header {
     text-align: center;
     font-variant: small-caps;
     outline: 5pt black;
     color: #9B2818;
-    font-size: 28pt;
+    font-size: 2vmax;
 }
 
 #main-container {
@@ -13,8 +20,14 @@ header {
 }
 
 button {
-    width: 250px;
-    font-size: 18pt;
+    width: fit-content;
+    font-size: 1vmax;
+    margin-inline-start: 3em;
+}
+
+#crSelector-container {
+    position: relative;
+    align-items: center;
 }
 
 #crSelector-container label{
@@ -34,25 +47,28 @@ button {
 #monster-list-container {
     align-items: center;
     display: inline-block;
-    vertical-align: middle;
+    margin-top: 10%;
     justify-content: space-around;
-    position: fixed;
+    position: absolute;
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
     border: 1px solid #9B2818;
     border-radius: 10px;
-    width: max-content;
-    height: max-content;
     max-width: 80%;
-    max-height: 60%;
+    width: fit-content;
+    height: fit-content;
 }
 
-#monster-list-container h2 {
-    font-size: 24pt;
+#monster-list-container h3 {
+    font-size: 1.8vmax;
     padding-right: 1em;
     padding-left: 1em;
     color: #9B2818;
+    display: inline-flexbox;
+    margin-inline-end: 3em;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #monster-list-container form {
@@ -66,16 +82,25 @@ button {
     column-width: fit-content;
 }
 
+#showStats {
+    align-items: right;
+    justify-content: space-around;
+}
+
 #monster-list-container radio {
-    font-size: 14pt;
     margin-inline-end: 1em;
 }
 
 #monster-list-container label {
-    font-size: 16pt;
+    font-size: 1.8vmax;
     margin-inline-end: 1em;
     margin-inline-start: 1em;
     flex-wrap: none;
+    width: 100%
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
 }
 
 .modal {
@@ -88,36 +113,100 @@ button {
     border-radius: 10px;
     z-index: 10;
     background-color: #F7F1D5;
-    width: 500px;
-    max-width: 80%;
+    min-width: 50%;
+    max-width: 90%;
 }
 
 .modal.active {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.modal-header {
-    font-size: 24pt;
-    font-weight: bold;
-    color: #9B2818;
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px #9B2818;
-}
-
-.modal-header .close-button {
+.close-button {
     cursor: pointer;
     border: none;
     outline: none;
     background: none;
     font-size: 24pt;
     font-weight: bold;
+    align-items: right;
+    /* display: none; */
+    margin-left: 120px;
 }
 
-.modal-body {
-    padding: 10px 15px;
+.monster-card {
+    display: block;
+    max-width: 90%;
+    box-sizing: border-box;
+    min-width: 700px;
+}
+
+.stats-base {
+    font-size: 34px;
+    padding: 0.4em;
+}
+
+.statName {
+    font-size: 34px;
+    font-weight: 700;
+    font-family: Arial;
+    color: #9B2818;
+    font-size: 4vmin;
+}
+
+.type-label p {
+    font-style: italic;
+    margin-top: -1em;
+    padding: 0.8em;
+    font-size: 2vmin;
+}
+
+hr {
+    /* border-top: 4px #9B2818; */
+    width: 95%;
+    padding: 0;
+    margin-top: -1em;
+}
+
+.attr-label {
+    font-size: 2vmin;
+    font-weight: bold;
+    padding-left: 0.4em;
+    color: #9B2818;
+}
+
+.attr-data {
+    padding: 2px;
+}
+
+.attr-value {
+    padding: 3px;
+    font-size: 2vmin;
+}
+
+.attr-extra {
+    padding: 3px;
+    font-size: 2vmin;
+}
+
+.abilities {
+    display: flex;
+}
+
+.ability-block {
+    display: block;
+    padding-left: 0.8em;
+}
+
+.ability-label {
+    color: #9B2818;
+    font-weight: bold;
+    align-items: center;
+    font-size: 2vmin;
+}
+
+.ability-value {
+    align-items: center;
+    font-size: 2vmin;
 }
 
 #overlay {
