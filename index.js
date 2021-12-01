@@ -9,7 +9,7 @@ document
     event.preventDefault();
     let cr = document.getElementById("challengeRatings").value;
     getMonsterWithCr(cr);
-    function resetItemList(className) {
+    function resetItemList() {
       let elements = document.getElementsByClassName("crResults");
       while (elements.length > 0) {
         elements[0].parentNode.removeChild(elements[0]);
@@ -44,7 +44,6 @@ const fetchMonsterDetails = async (monster) => {
   const data = await response.json();
   monsterDetails[monster.name] = data;
   const listItem = generateMonsterListItem(monsterDetails[monster.name]);
-  document.querySelector("section.monster-list form").append(listItem);
 };
 
 const generateMonsterListItem = (data) => {
@@ -66,18 +65,17 @@ const generateMonsterListItem = (data) => {
   document.getElementById("crResults").innerHTML = `
   CR ${crText} Monsters
   `;
-  buildCard(data); //.removeChild("undefined ");
+  buildCard(data);
 };
 
 const buildCard = (monster) => {
   let crList = `<div class="crResults">
-    <span>
-        <input type="radio" name="monsterCard" class="crResults" data-url="${baseUrl}${monster.url}/" id="${monster.name}" value="${monster.name}">
-        <label for="${baseUrl}${monster.url}" id="${monster.name}" class="crResults">${monster.name}</label>
-    </span><br>
-</div>`;
+      <span>
+          <input type="radio" name="monsterCard" class="crResults" data-url="${baseUrl}${monster.url}/" id="${monster.name}" value="${monster.name}">
+          <label for="${baseUrl}${monster.url}" id="${monster.name}" class="crResults">${monster.name}</label>
+      </span><br>
+  </div>`;
   document.querySelector("section.monster-list form").innerHTML += `${crList}`;
-  document.querySelector("section.monster-list form").removeChild(node);
 };
 
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
@@ -129,13 +127,7 @@ function openModal(modal) {
   if (modal == null) return;
   modal.classList.add("active");
   overlay.classList.add("active");
-  let selected = document.querySelector(
-    'input[type="radio"][class="crResults"]:checked'
-  ).value;
   let statBlock = document.querySelector("div.modal");
-  //   document.createTextNode(selected);
-  //   statBlock.innerHTML = "";
-
   renderStatBlock(statBlock);
 }
 
@@ -143,29 +135,21 @@ const renderStatBlock = (statBlock) => {
   let statUrl = document.querySelector(
     'input[type="radio"][class="crResults"]:checked'
   ).dataset.url;
-  fetchStats(statUrl).then((res) => statBlock.append(renderStats(res)));
+  fetchStats(statUrl, statBlock)
+};
+
+const fetchStats = async (statUrl, statBlock) => {
+  const response = await fetch(`${statUrl}`);
+  const statData = await response.json();
+  statBlock = statData
+  renderStats(statBlock)
 };
 
 const renderStats = (stat) => {
   const monsterCard = document.createElement("div");
   monsterCard.className = "monster-card";
-  monsterCard.dataset["name"] = stat.name;
-  monsterCard.dataset["size"] = stat.size;
-  monsterCard.dataset["type"] = stat.type;
-  monsterCard.dataset["subtype"] = stat.subtype;
-  monsterCard.dataset["alignment"] - stat.alignment;
-  monsterCard.dataset["armor_class"] = stat.armor_class;
-  monsterCard.dataset["hit_points"] = stat.hit_points;
-  monsterCard.dataset["hit_dice"] = stat.hit_dice;
-  monsterCard.dataset["speed"] = stat.speed;
-  monsterCard.dataset["strength"] = stat.strength;
-  monsterCard.dataset["dexterity"] = stat.dexterity;
-  monsterCard.dataset["constitution"] = stat.constitution;
-  monsterCard.dataset["intelligence"] = stat.intelligence;
-  monsterCard.dataset["wisdom"] = stat.wisdom;
-  monsterCard.dataset["charisma"] = stat.charisma;
 
-  function resetStatBlock(className) {
+  function resetStatBlock() {
     let elements = document.getElementsByClassName("monster-card");
     while (elements.length > 0) {
       elements[0].parentNode.removeChild(elements[0]);
@@ -214,7 +198,9 @@ const renderStats = (stat) => {
   }
   chaMod = `${chaMod}`;
 
-  let speeds = Object.entries(stat.speed).join(", ").replaceAll(",", " ");
+  let speeds = Object.keys(stat.speed)
+    .map((key) => `${key} ${stat.speed[key]}`)
+    .join(", ");
 
   monsterCard.innerHTML = `
 <div class="stats-base">
@@ -288,11 +274,4 @@ const renderStats = (stat) => {
 </div>
     `;
   card = document.querySelector("div.modal").appendChild(monsterCard);
-  card.removeChild(node);
-};
-
-const fetchStats = async (statUrl) => {
-  const response = await fetch(`${statUrl}`);
-  const statData = await response.json();
-  return statData;
 };
