@@ -135,14 +135,14 @@ const renderStatBlock = (statBlock) => {
   let statUrl = document.querySelector(
     'input[type="radio"][class="crResults"]:checked'
   ).dataset.url;
-  fetchStats(statUrl, statBlock)
+  fetchStats(statUrl, statBlock);
 };
 
 const fetchStats = async (statUrl, statBlock) => {
   const response = await fetch(`${statUrl}`);
   const statData = await response.json();
-  statBlock = statData
-  renderStats(statBlock)
+  statBlock = statData;
+  renderStats(statBlock);
 };
 
 const renderStats = (stat) => {
